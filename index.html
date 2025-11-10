@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .forms {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: flex-end;
+        }
+        .error {
+            color: red;
+            margin-bottom: 15px;
+        }
+        .clear-btn {
+            padding: 8px 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <h2>Current Items</h2>
+    {% if items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Email</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.task }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.priority }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No to-do items yet.</p>
+    {% endif %}
+
+    <div class="forms">
+        <!-- Add To-Do Item Form -->
+        <form action="{{ url_for('submit_item') }}" method="post">
+            <h2>Add New To-Do Item</h2>
+            <div>
+                <label for="task">Task:</label><br>
+                <input type="text" id="task" name="task" required>
+            </div>
+            <div>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="priority">Priority:</label><br>
+                <select id="priority" name="priority" required>
+                    <option value="">-- Select --</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div style="margin-top:10px;">
+                <button type="submit">Add To Do Item</button>
+            </div>
+        </form>
+
+        <!-- Clear List Form -->
+        <form action="{{ url_for('clear_items') }}" method="post">
+            <h2>Clear List</h2>
+            <button type="submit" class="clear-btn">Clear</button>
+        </form>
+    </div>
+</body>
+</html>
