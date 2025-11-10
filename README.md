@@ -22,7 +22,7 @@ Users can add, view, and clear tasks directly through a web interface.
    ```bash
    python todoapp.py
    ```
-3. Open in your browser:
+3. Open in a browser:
    ```
    http://127.0.0.1:5000
    ```
