@@ -1,4 +1,8 @@
 # IS211 Assignment 11 – Flask To-Do List App
+John Moon <br>
+Prof. Ledon <br>
+IS 211 - Software App. Programming II <br>
+Nov. 7, 2025
 
 This project is a simple Flask-based **To-Do List Web Application**.  
 Users can add, view, and clear tasks directly through a web interface.
